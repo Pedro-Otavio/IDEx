@@ -9,7 +9,7 @@ function extractbtn() {
     startbtn.setAttribute("class", "yt-uix-button");
     startbtn.setAttribute("onclick", "start();");
     header.replaceChild(startbtn, document.getElementsByClassName("pl-header-content")[0]);
-    startbtn.focus();
+    header.scrollIntoView(false);
 }
 
 var blob;
