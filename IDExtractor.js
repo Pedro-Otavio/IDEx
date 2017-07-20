@@ -17,7 +17,7 @@ function start() {
     var rows = mess.filter(isrow);
     var IDs = rows[0].getAttribute("data-video-id");
     for (var i = 1, len = rows.length; i < len; i++) {
-        IDs += '§' + rows[i].getAttribute("data-video-id");
+        IDs += '~' + rows[i].getAttribute("data-video-id");
     }
     blob = new Blob([IDs], {type: "text/plain"});
     var url = window.URL.createObjectURL(blob);
