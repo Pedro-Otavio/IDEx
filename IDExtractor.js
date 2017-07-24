@@ -40,7 +40,7 @@ function downloadbtn(url) {
     a.setAttribute("class", "yt-uix-button");
     a.setAttribute("href", url);
     a.setAttribute("download", "IDs.txt");
-    a.setAttribute("onclick", "free(" + url + ")");
+    a.setAttribute("onclick", "free('" + url + "')");
     header.replaceChild(a, startbtn);
 }
 
