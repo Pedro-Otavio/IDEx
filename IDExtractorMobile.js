@@ -4,8 +4,8 @@ start();
 
 function start() {
     let mgbs = document.querySelectorAll('._mgb');
-    let IDs = idFromUrl(mgbs[0].querySelector('a').href);
-    for (let i = 1, len = mgbs.length; i < len; i++) {
+    let IDs = idFromUrl(mgbs[2].querySelector('a').href);
+    for (let i = 3, len = mgbs.length; i < len; i++) {
         IDs += '~' + idFromUrl(mgbs[i].querySelector('a').href);
     }
     blob = new Blob([IDs], {
