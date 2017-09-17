@@ -1,41 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- jQuery -->
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Stuff -->
-        <title>IDEx</title>
-        <link rel="shortcut icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
-        <link rel="icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
-        <link rel="stylesheet" href="https://pedro-otavio.github.io/Resources/one.css">
-        <!-- <link rel="stylesheet" href="https://rawgit.com/Pedro-Otavio/Resources/master/one.css"> -->
-    </head>
-    <body>
-        <div class="container fullH">
-            <div class="d-20"></div>
-            <div class="row center">
-                <div class="col-md-12">
-                    <h1>Extract IDs from <a href="https://www.youtube.com/">youtube</a> playlists</h1>
+
+<head>
+    <!-- jQuery -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Stuff -->
+    <title>IDEx</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://pedro-otavio.github.io/Resources/one.css">
+    <!-- <link rel="stylesheet" href="https://rawgit.com/Pedro-Otavio/Resources/master/one.css"> -->
+</head>
+
+<body>
+    <div class="container fullH">
+        <div class="d-20"></div>
+        <div class="row center">
+            <div class="col-md-12">
+                <h1>Extract IDs from <a href="https://www.youtube.com/">youtube</a> playlists</h1>
+            </div>
+        </div>
+        <div class="d-2"></div>
+        <div class="row center">
+            <a class="btn" id="btnIDEx">IDEx</a>
+            <a class="btn disabled" id="btnIDExMobile" disabled>IDEx Mobile</a>
+            <a class="btn" id="btnIDExClassic">IDEx Classic</a>
+        </div>
+        <div class="d-2"></div>
+        <div class="tabbable" id="divTab" style="text-align: center;">
+            <ul class="nav nav-tabs" style="display: inline-block; float:none;">
+                <li class="active"><a href="#panelNormal" data-toggle="tab">Normal</a></li>
+                <li><a href="#panelMobile" data-toggle="tab">Mobile</a></li>
+                <li><a href="#panelClassic" data-toggle="tab">Classic</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="panelNormal">
+                    <div class="d-2"></div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3" style="text-align: initial;">
+                            <p class="lead">
+                                1. Drag the IDEx button to your bookmarks bar.
+                            </p>
+                            <p class="lead">
+                                2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alcyTM2lkWJU34KtfPXQDaX">playlist's page</a>,
+                                scroll down until you reach the end.
+                            </p>
+                            <p class="lead">
+                                3. Press the bookmarked <span style="color: #CFCFCF;">IDEx</span> button.
+                            </p>
+                            <p class="lead">
+                                4. The download should begin, take the text file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="d-2"></div>
-            <div class="row center">
-                <a class="btn" href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src', 'https://pedro-otavio.github.io/IDEx/IDExtractorClassic.js');document.body.appendChild(e)})());">IDEx Classic</a>
-            </div>
-            <div class="d-5"></div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <p class="lead">1. Drag the IDEx button to your bookmarks bar.</p>
-                    <p class="lead">2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alcyTM2lkWJU34KtfPXQDaX">playlist's page</a>, click "Load more" until you reach the end.</p>
-                    <p class="lead">3. Press the bookmarked <span style="color: #CFCFCF;">IDEx</span> button. The extraction button should appear.</p>
-                    <p class="lead">4. Once pressed, a download button should replace it, take the downloaded text file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.</p>
+                <div class="tab-pane" id="panelMobile">
+                    <div class="d-2"></div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+                            <p class="lead"><i>Soon</i></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="panelClassic">
+                    <div class="d-2"></div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2" style="text-align: initial;">
+                            <p class="lead">1. Drag the IDEx button to your bookmarks bar.</p>
+                            <p class="lead">2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alcyTM2lkWJU34KtfPXQDaX">playlist's page</a>,
+                                click "Load more" until you reach the end.</p>
+                            <p class="lead">3. Press the bookmarked <span style="color: #CFCFCF;">IDEx</span> button. The extraction button
+                                should appear.
+                            </p>
+                            <p class="lead">4. Once pressed, a download button should replace it, take the downloaded text file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+<script>
+    $('#btnIDEx').attr('href', bookmarkletUrl('IDExtractor.js'));
+    $('#btnIDExMobile').attr('href', bookmarkletUrl('IDExtractorMobile.js'));
+    $('#btnIDExClassic').attr('href', bookmarkletUrl('IDExtractorClassic.js'));
+
+    function bookmarkletUrl(filename) {
+        let url = "javascript:void((function(){" +
+            "var e=document.createElement('script');" +
+            "e.setAttribute('type','text/javascript');" +
+            "e.setAttribute('charset','UTF-8');" +
+            "e.setAttribute('src', 'https://pedro-otavio.github.io/IDEx/" + filename + "');" +
+            "document.body.appendChild(e)})())";
+        return url;
+    }
+</script>
+
 </html>
