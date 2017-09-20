@@ -6,7 +6,9 @@ function start() {
     let contents = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
     let IDs = contents[0].playlistVideoRenderer.videoId;
     for (let i = 1, len = contents.length; i < len; i++) {
-        IDs += '~' + contents[i].playlistVideoRenderer.videoId;
+        if (contents[i].playlistVideoRenderer.isPlayable) {
+            IDs += '~' + contents[i].playlistVideoRenderer.videoId;
+        }
     }
     blob = new Blob([IDs], {
         type: "text/plain"
