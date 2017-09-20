@@ -6,7 +6,9 @@ function start() {
     let mgbs = document.querySelectorAll('._mgb');
     let IDs = idFromUrl(mgbs[2].querySelector('a').href);
     for (let i = 3, len = mgbs.length; i < len; i++) {
-        IDs += '~' + idFromUrl(mgbs[i].querySelector('a').href);
+        if (mgbs[i].querySelector('img').src != "//s.ytimg.com/yts/img/no_thumbnail-vfl4t3-4R.jpg") {
+            IDs += '~' + idFromUrl(mgbs[i].querySelector('a').href);
+        }
     }
     blob = new Blob([IDs], {
         type: "text/plain"
