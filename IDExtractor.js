@@ -4,7 +4,7 @@ if (window.location.host != "m.youtube.com") {
     let array = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
     start(array, validate, idFrom);
 } else {
-    let array = document.querySelectorAll('._mgb');
+    let array = Array.from(document.querySelectorAll('._mgb'));
     array.splice(0, 2);
     start(array, m_validate, m_idFrom);
 }
@@ -22,20 +22,20 @@ function start(array, validate, idFrom) {
     download(blob);
 }
 
-function validate(el) {
-    return el.playlistVideoRenderer.isPlayable;
+function validate(e) {
+    return e.playlistVideoRenderer.isPlayable;
 }
 
-function idFrom(el) {
-    return el.playlistVideoRenderer.videoId;
+function idFrom(e) {
+    return e.playlistVideoRenderer.videoId;
 }
 
-function m_validate(el) {
-    return (el.querySelector('img').src != "//s.ytimg.com/yts/img/no_thumbnail-vfl4t3-4R.jpg");
+function m_validate(e) {
+    return (e.querySelector('img').src != "//s.ytimg.com/yts/img/no_thumbnail-vfl4t3-4R.jpg");
 }
 
-function m_idFrom(el) {
-    let url = el.querySelector('a').href;
+function m_idFrom(e) {
+    let url = e.querySelector('a').href;
     let i = url.search('v=');
     return url.substring((i + 2), url.length);
 }
