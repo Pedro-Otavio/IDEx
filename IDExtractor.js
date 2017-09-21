@@ -1,5 +1,3 @@
-let blob;
-
 if (window.location.host != "m.youtube.com") {
     let array = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
     start(array, validate, idFrom);
@@ -10,6 +8,7 @@ if (window.location.host != "m.youtube.com") {
 }
 
 function start(array, validate, idFrom) {
+    let blob;
     let IDs = idFrom(array[0]);
     for (let i = 1, len = array.length; i < len; i++) {
         if (validate(array[i])) {
