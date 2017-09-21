@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
     <link rel="icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://pedro-otavio.github.io/Resources/one.css">
-    <!-- <link rel="stylesheet" href="https://rawgit.com/Pedro-Otavio/Resources/master/one.css"> -->
+    <script src="https://pedro-otavio.github.io/Resources/bookmarkletURL.js"></script>
 </head>
 
 <body>
@@ -27,24 +27,24 @@
         </div>
         <div class="d-2"></div>
         <div class="row center">
-            <a class="btn" id="btnIDEx">IDEx</a>
-            <a class="btn" id="btnIDExMobile">IDEx Mobile</a>
-            <a class="btn" id="btnIDExClassic">IDEx Classic</a>
+            <a class="btn bookmarklet" id="btnIDEx">IDEx</a>
+            <script>
+                $('#btnIDEx').attr('href', bookmarkletURL('IDEx', 'IDExtractor.js'));
+            </script>
         </div>
         <div class="d-2"></div>
         <div class="tabbable" id="divTab" style="text-align: center;">
             <ul class="nav nav-tabs" style="display: inline-block; float:none;">
-                <li class="active"><a href="#panelNormal" data-toggle="tab">Normal</a></li>
+                <li class="active"><a href="#panelDesktop" data-toggle="tab">Desktop</a></li>
                 <li><a href="#panelMobile" data-toggle="tab">Mobile</a></li>
-                <li><a href="#panelClassic" data-toggle="tab">Classic</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="panelNormal">
+                <div class="tab-pane active" id="panelDesktop">
                     <div class="d-2"></div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3" style="text-align: initial;">
                             <p class="lead">
-                                1. Drag the IDEx button to your bookmarks bar.
+                                1. Drag the <span style="color: #CFCFCF;">IDEx</span> button to your bookmarks bar.
                             </p>
                             <p class="lead">
                                 2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-7 col-md-offset-3" style="text-align: initial;">
                             <p class="lead">
-                                1. Long press the IDExMobile button and select copy link address.
+                                1. Long press the <span style="color: #CFCFCF;">IDEx</span> button and select copy link address.
                             </p>
                             <p class="lead">
                                 2. Go to a <a href="https://m.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
@@ -78,44 +78,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="panelClassic">
-                    <div class="d-2"></div>
-                    <div class="row">
-                        <div class="col-md-7 col-md-offset-3" style="text-align: initial;">
-                            <p class="lead">
-                                1. Drag the IDEx button to your bookmarks bar.
-                            </p>
-                            <p class="lead">
-                                2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
-                                click "Load more" until you reach the end.
-                            </p>
-                            <p class="lead">3. Press the bookmarked <span style="color: #CFCFCF;">IDEx</span> button. The extraction button
-                                should appear.
-                            </p>
-                            <p class="lead">
-                                4. Once pressed, a download button should replace it, take the downloaded text file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </body>
-<script>
-    $('#btnIDEx').attr('href', bookmarkletUrl('IDExtractor.js'));
-    $('#btnIDExMobile').attr('href', bookmarkletUrl('IDExtractorMobile.js'));
-    $('#btnIDExClassic').attr('href', bookmarkletUrl('IDExtractorClassic.js'));
-
-    function bookmarkletUrl(filename) {
-        let url = "javascript:void((function(){" +
-            "var e=document.createElement('script');" +
-            "e.setAttribute('type','text/javascript');" +
-            "e.setAttribute('charset','UTF-8');" +
-            "e.setAttribute('src', 'https://pedro-otavio.github.io/IDEx/" + filename + "');" +
-            "document.body.appendChild(e)})())";
-        return url;
-    }
-</script>
 
 </html>
