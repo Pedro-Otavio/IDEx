@@ -1,5 +1,23 @@
 let notMobile = (window.location.host != "m.youtube.com");
 
+let idFrom = function(e) {
+    return e.playlistVideoRenderer.videoId;
+};
+
+let titleFrom = function(e) {
+    return e.playlistVideoRenderer.title.simpleText;
+};
+
+let m_idFrom = function(e) {
+    let url = e.querySelector('a').href;
+    let i = url.search('v=');
+    return url.substring((i + 2), url.length);
+};
+
+let m_titleFrom = function(e) {
+    return e.querySelector('._mokc').firstChild.firstChild.innerText;
+};
+
 function start(array, validate, idFrom, titleFrom) {
     let dataArr = [];
     let vidData = {
@@ -17,24 +35,6 @@ function start(array, validate, idFrom, titleFrom) {
         type: "application/json"
     });
     download(blob);
-}
-
-function idFrom(e) {
-    return e.playlistVideoRenderer.videoId;
-}
-
-function titleFrom(e) {
-    return e.playlistVideoRenderer.title.simpleText;
-}
-
-function m_idFrom(e) {
-    let url = e.querySelector('a').href;
-    let i = url.search('v=');
-    return url.substring((i + 2), url.length);
-}
-
-function m_titleFrom(e) {
-    return e.querySelector('._mokc').firstChild.firstChild.innerText;
 }
 
 function download(blob) {
