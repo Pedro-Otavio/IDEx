@@ -18,7 +18,7 @@ function start(array, idFrom, titleFrom) {
     for (let i = 0, len = array.length; i < len; i++) {
         vidData.id = idFrom(array[i]);
         vidData.title = titleFrom(array[i]);
-        data.push(vidData);
+        dataArr.push(vidData);
         vidData = {};
     }
     let data = JSON.stringify(dataArr);
