@@ -1,36 +1,39 @@
-if (window.location.host != "m.youtube.com") {
-    let array = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-    start(array, validate, idFrom);
+let notMobile = (window.location.host != "m.youtube.com");
+
+if (notMobile) {
+    let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
+    start(array, idFrom, titleFrom);
 } else {
     let array = Array.from(document.querySelectorAll('._mgb'));
     array.splice(0, 2);
-    start(array, m_validate, m_idFrom);
+    start(array, m_idFrom, m_titleFrom);
 }
 
-function start(array, validate, idFrom) {
-    let blob;
-    let IDs = idFrom(array[0]);
-    for (let i = 1, len = array.length; i < len; i++) {
-        if (validate(array[i])) {
-            IDs += '~' + idFrom(array[i]);
-        }
+function start(array, validate, idFrom, titleFrom) {
+    let dataArr = [];
+    let vidData = {
+        id: '',
+        title: ''
+    };
+    for (let i = 0, len = array.length; i < len; i++) {
+        vidData.id = idFrom(array[i]);
+        vidData.title = titleFrom(array[i]);
+        data.push(vidData);
+        vidData = {};
     }
-    blob = new Blob([IDs], {
-        type: "text/plain"
+    let data = JSON.stringify(dataArr);
+    let blob = new Blob([data], {
+        type: "application/json"
     });
     download(blob);
-}
-
-function validate(e) {
-    return e.playlistVideoRenderer.isPlayable;
 }
 
 function idFrom(e) {
     return e.playlistVideoRenderer.videoId;
 }
 
-function m_validate(e) {
-    return (e.querySelector('img').src != "//s.ytimg.com/yts/img/no_thumbnail-vfl4t3-4R.jpg");
+function titleFrom(e) {
+    return e.playlistVideoRenderer.title.simpleText;
 }
 
 function m_idFrom(e) {
@@ -39,16 +42,18 @@ function m_idFrom(e) {
     return url.substring((i + 2), url.length);
 }
 
-function download(blob) {
-    let url = window.URL.createObjectURL(blob);
-    let div = document.createElement('DIV');
-    div.innerHTML = '<a id="btnDownload" href="' + url + '" download="IDs.txt" onclick="free("' + url + '")"><h1 style="color: #FFFFFF; background-color: #000000;">Download</h1></a>';
-    let content = document.getElementById('content')
-    content.insertBefore(div, content.childNodes[0]);
-    document.getElementById('btnDownload').click();
+function m_titleFrom(e) {
+    return e.querySelector('._mokc').firstChild.firstChild.innerText;
 }
 
-function free(url) {
+function download(blob) {
+    let url = window.URL.createObjectURL(blob);
+    let a = document.createElement('A');
+    a.text = "Download";
+    a.style = "color: #FFFFFF; background-color: #000000;";
+    a.download = "IDs.json";
+    a.href = url;
+    a.click();
     window.setTimeout(function () {
         window.URL.revokeObjectURL(url);
     }, 500);
