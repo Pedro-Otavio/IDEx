@@ -1,14 +1,5 @@
 let notMobile = (window.location.host != "m.youtube.com");
 
-if (notMobile) {
-    let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-    start(array, idFrom, titleFrom);
-} else {
-    let array = Array.from(document.querySelectorAll('._mgb'));
-    array.splice(0, 2);
-    start(array, m_idFrom, m_titleFrom);
-}
-
 function start(array, validate, idFrom, titleFrom) {
     let dataArr = [];
     let vidData = {
@@ -57,4 +48,13 @@ function download(blob) {
     window.setTimeout(function () {
         window.URL.revokeObjectURL(url);
     }, 500);
+}
+
+if (notMobile) {
+    let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
+    start(array, idFrom, titleFrom);
+} else {
+    let array = Array.from(document.querySelectorAll('._mgb'));
+    array.splice(0, 2);
+    start(array, m_idFrom, m_titleFrom);
 }
