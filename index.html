@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/6f684b2385.js"></script>
     <!-- Stuff -->
     <title>IDEx</title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
@@ -27,7 +29,7 @@
         </div>
         <div class="d-2"></div>
         <div class="row center">
-            <a class="btn bookmarklet" id="btnIDEx">IDEx</a>
+            <a class="btn" id="btnIDEx">IDEx</a>
             <script>
                 $('#btnIDEx').attr('href', bookmarkletURL('IDEx', 'IDExtractor.js'));
             </script>
@@ -35,8 +37,8 @@
         <div class="d-2"></div>
         <div class="tabbable" id="divTab" style="text-align: center;">
             <ul class="nav nav-tabs" style="display: inline-block; float:none;">
-                <li class="active"><a href="#panelDesktop" data-toggle="tab">Desktop</a></li>
-                <li><a href="#panelMobile" data-toggle="tab">Mobile</a></li>
+                <li class="active"><a href="#panelDesktop" data-toggle="tab"><i class="fa fa-desktop fa-lg">&nbsp;&nbsp;Desktop</i></a></li>
+                <li><a href="#panelMobile" data-toggle="tab"><i class="fa fa-mobile fa-lg">&nbsp;&nbsp;Mobile</i></a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="panelDesktop">
@@ -64,7 +66,7 @@
                     <div class="row">
                         <div class="col-md-7 col-md-offset-3" style="text-align: initial;">
                             <p class="lead">
-                                1. Long press the <span style="color: #CFCFCF;">IDEx</span> button and select copy link address.
+                                1. Hold the <span style="color: #CFCFCF;">IDEx</span> button and select copy link address.
                             </p>
                             <p class="lead">
                                 2. Go to a <a href="https://m.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
