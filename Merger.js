@@ -4,8 +4,15 @@ let fileReaderBase = new FileReader();
 let fileReaderDict = new FileReader();
 let fileBase, fileDict;
 
-$('#fileInputBase').change(function () { base = true; enable(); });
-$('#fileInputDictionary').change(function () { dict = true; enable(); });
+$('#fileInputBase').change(function () {
+    base = true;
+    enable();
+});
+
+$('#fileInputDictionary').change(function () {
+    dict = true;
+    enable();
+});
 $('#merge').click(merge);
 
 function enable() {
@@ -43,27 +50,35 @@ function merge() {
 function ready() {
     if (base && dict) {
         let dictIds = [];
-        for (let i = 0, len = fileDict.length; i < len; ++i) {
-            dictIds[i] = fileDict[i].id;
+        for (let i = 0, len = fileDict.playlist.length; i < len; ++i) {
+            dictIds[i] = fileDict.playlist[i].id;
         }
-        let renamedIds = [];
+        let renamed = [];
         let vidData = {
             id: '',
             title: ''
         };
-        for (let i = 0, len = fileBase.length; i < len; ++i) {
-            vidData.id = fileBase[i].id;
+        for (let i = 0, len = fileBase.playlist.length; i < len; ++i) {
+            vidData.id = fileBase.playlist[i].id;
             let dictIndex = dictIds.indexOf(vidData.id);
-            vidData.title = (dictIndex != -1) ? fileDict[dictIndex].title : fileBase[i].title;
-            renamedIds.push(vidData);
+            vidData.title = (dictIndex != -1) ? fileDict.playlist[dictIndex].title : fileBase.playlist[i].title;
+            renamed.push(vidData);
             vidData = {};
         }
-        let data = JSON.stringify(renamedIds);
+        let playerData = {
+            index: fileBase.index,
+            indexArray: fileBase.indexArray,
+            playlist: renamed
+        };
+        let data = JSON.stringify(playerData);
         let blob = new Blob([data], {
             type: 'application/json'
         });
         let url = window.URL.createObjectURL(blob);
-        $('#hiddenLink').attr('href', url).attr('download', 'RenamedIDs.json');
+        $('#hiddenLink').attr('href', url).attr('download', 'RenamedPlaylist.json');
         document.querySelector('#hiddenLink').click(); //jQuery bug
+        window.setTimeout(function () {
+            window.URL.revokeObjectURL(url);
+        }, 500);
     }
 }

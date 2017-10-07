@@ -21,7 +21,12 @@ function start(array, idFrom, titleFrom) {
         dataArr.push(vidData);
         vidData = {};
     }
-    let data = JSON.stringify(dataArr);
+    let playerData = {
+        index: 0,
+        indexArray: [],
+        playlist: dataArr
+    };
+    let data = JSON.stringify(playerData);
     let blob = new Blob([data], {
         type: "application/json"
     });
@@ -51,7 +56,7 @@ function download(blob) {
     let a = document.createElement('A');
     a.text = "Download";
     a.style = "color: #FFFFFF; background-color: #000000;";
-    a.download = "IDs.json";
+    a.download = "Playlist.json";
     a.href = url;
     a.click();
     window.setTimeout(function () {
