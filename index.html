@@ -16,7 +16,12 @@
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
     <link rel="icon" href="https://raw.githubusercontent.com/Pedro-Otavio/Resources/master/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://pedro-otavio.github.io/Resources/one.css">
-    <script src="https://pedro-otavio.github.io/Resources/bookmarkletURL.js"></script>
+    <script src="https://pedro-otavio.github.io/Resources/one.js"></script>
+    <script>
+        function bookmarkletURL(repository, filename) {
+            return "javascript:void((function(){vare=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://pedro-otavio.github.io/" + repository + "/" + filename + "');document.body.appendChild(e)})())";
+        }
+    </script>
 </head>
 
 <body>
@@ -24,7 +29,9 @@
         <div class="d-20"></div>
         <div class="row center">
             <div class="col-md-12">
-                <h1>Extract IDs from <a href="https://www.youtube.com/">youtube</a> playlists</h1>
+                <h1>Extract IDs from
+                    <a href="https://www.youtube.com/">youtube</a> playlists
+                </h1>
             </div>
         </div>
         <div class="d-2"></div>
@@ -37,8 +44,16 @@
         <div class="d-2"></div>
         <div class="tabbable" id="divTab" style="text-align: center;">
             <ul class="nav nav-tabs" style="display: inline-block; float:none;">
-                <li class="active"><a href="#panelDesktop" data-toggle="tab"><span class="fa fa-desktop fa-lg">&nbsp;&nbsp;Desktop</span></a></li>
-                <li><a href="#panelMobile" data-toggle="tab"><span class="fa fa-mobile fa-lg">&nbsp;&nbsp;Mobile</span></a></li>
+                <li class="active">
+                    <a href="#panelDesktop" data-toggle="tab">
+                        <span class="fa fa-desktop fa-lg">&nbsp;&nbsp;Desktop</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#panelMobile" data-toggle="tab">
+                        <span class="fa fa-mobile fa-lg">&nbsp;&nbsp;Mobile</span>
+                    </a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="panelDesktop">
@@ -46,17 +61,20 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3" style="text-align: initial;">
                             <p class="lead">
-                                1. Drag the <span style="color: #CFCFCF;">IDEx</span> button to your bookmarks bar.
+                                1. Drag the
+                                <span style="color: #CFCFCF;">IDEx</span> button to your bookmarks bar.
                             </p>
                             <p class="lead">
-                                2. Go to a <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
-                                scroll down until you reach the end.
+                                2. Go to a
+                                <a href="https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>, scroll down until you reach the end.
                             </p>
                             <p class="lead">
-                                3. Press the bookmarked <span style="color: #CFCFCF;">IDEx</span> button.
+                                3. Press the bookmarked
+                                <span style="color: #CFCFCF;">IDEx</span> button.
                             </p>
                             <p class="lead">
-                                4. The download should begin, take the file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
+                                4. The download should begin, take the file
+                                <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
                             </p>
                         </div>
                     </div>
@@ -66,23 +84,48 @@
                     <div class="row">
                         <div class="col-md-7 col-md-offset-3" style="text-align: initial;">
                             <p class="lead">
-                                1. Hold the <span style="color: #CFCFCF;">IDEx</span> button and select copy link address.
+                                1. Hold the
+                                <span style="color: #CFCFCF;">IDEx</span> button and select copy link address.
                             </p>
                             <p class="lead">
-                                2. Go to a <a href="https://m.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>,
-                                click "Load more" until you reach the end.
+                                2. Go to a
+                                <a href="https://m.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI">playlist's page</a>, click "Load more" until you reach the end.
                             </p>
                             <p class="lead">3. Paste the address in the omnibox/address bar.
                             </p>
                             <p class="lead">
-                                4. The download should begin, take the file <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
+                                4. The download should begin, take the file
+                                <a href="https://pedro-otavio.github.io/IDListPlayer/">here</a>.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row center">
+            <div class="col-md-12">
+                <label id="label-fileInputBase" for="fileInputBase" title="Base file" class="btn">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                    &nbsp;
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                </label>
+                <input type="file" id="fileInputBase" class="hidden">
+                <button id="merge" class="btn" title="Combine" disabled>
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    <span class="glyphicon glyphicon-file"></span>
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </button>
+                <a id="hiddenLink" class="hidden"></a>
+                <label id="label-fileInputDictionary" for="fileInputDictionary" title="Dictionary file" class="btn">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    &nbsp;
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </label>
+                <input type="file" id="fileInputDictionary" class="hidden">
+            </div>
+        </div>
     </div>
+    <script src="c:\Users\Pedro\Desktop\Repositorios\IDEx\Merger.js"></script>
 </body>
 
 </html>
