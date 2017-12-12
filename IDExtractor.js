@@ -4,8 +4,7 @@ if (notMobile) {
     let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
     start(array, idFrom, titleFrom);
 } else {
-    let array = Array.from(document.querySelectorAll('._mgb'));
-    array.splice(0, 2);
+    let array = Array.from(document.querySelectorAll('.tgb'));
     start(array, m_idFrom, m_titleFrom);
 }
 
@@ -44,11 +43,11 @@ function titleFrom(e) {
 function m_idFrom(e) {
     let url = e.querySelector('a').href;
     let i = url.search('v=');
-    return url.substring((i + 2), url.length);
+    return url.substring((i + 2), (i + 13));
 }
 
 function m_titleFrom(e) {
-    return e.querySelector('._mokc').firstChild.firstChild.innerText;
+    return e.querySelector('.jo > .lkb > span').innerText;
 }
 
 function download(blob) {
