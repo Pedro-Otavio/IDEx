@@ -4,7 +4,8 @@ if (notMobile) {
     let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
     start(array, idFrom, titleFrom);
 } else {
-    let array = Array.from(document.querySelectorAll('.tgb'));
+    let container = document.querySelector('.xtb .vz');
+    let array = Array.from(container.querySelectorAll('.tgb'));
     start(array, m_idFrom, m_titleFrom);
 }
 
