@@ -4,6 +4,8 @@ var idFrom = d_idFrom;
 var titleFrom = d_titleFrom;
 var array = [];
 
+setup();
+
 function setup() {
     notMobile = (window.location.host != "m.youtube.com");
     if (notMobile) {
