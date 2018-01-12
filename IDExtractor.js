@@ -1,15 +1,21 @@
-let notMobile = (window.location.host != "m.youtube.com");
+var notMobile = (window.location.host != "m.youtube.com");
+var filename = "Playlist";
+var idFrom = d_idFrom;
+var titleFrom = d_titleFrom;
+var array = [];
 
 if (notMobile) {
-    let array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-    start(array, idFrom, titleFrom);
+    array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
+    filename = ytInitialData.sidebar.playlistSidebarRenderer.items[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
+    start();
 } else {
-    let container = document.querySelector('.xtb .vz');
-    let array = Array.from(container.querySelectorAll('.tgb'));
-    start(array, m_idFrom, m_titleFrom);
+    let container = document.querySelector('.etb .mz');
+    array = Array.from(container.querySelectorAll('.igb'));
+    filename = document.querySelector('.dab > .vjb > span').innerText;
+    start();
 }
 
-function start(array, idFrom, titleFrom) {
+function start() {
     let dataArr = [];
     let vidData = {
         id: '',
@@ -22,33 +28,41 @@ function start(array, idFrom, titleFrom) {
         vidData = {};
     }
     let playerData = {
-        index: 0,
+        playlist: dataArr,
         indexArray: [],
-        playlist: dataArr
+        index: 0,
+        time: 0
     };
     let data = JSON.stringify(playerData);
     let blob = new Blob([data], {
         type: "application/json"
     });
+    filename += " (" + array.length + ")";
     download(blob);
 }
 
-function idFrom(e) {
+function d_idFrom(e) {
     return e.playlistVideoRenderer.videoId;
 }
 
-function titleFrom(e) {
+function d_titleFrom(e) {
     return e.playlistVideoRenderer.title.simpleText;
 }
 
 function m_idFrom(e) {
     let url = e.querySelector('a').href;
-    let i = url.search('v=');
-    return url.substring((i + 2), (i + 13));
+    let start = url.search('v=');
+    let r = url.substring(start + 2);
+    let end = r.search('&|/');
+    if (end !== -1) {
+        return r.substring(0, end);
+    } else {
+        return r;
+    }
 }
 
 function m_titleFrom(e) {
-    return e.querySelector('.jo > .lkb > span').innerText;
+    return e.querySelector('.xn > .vjb > span').innerText;
 }
 
 function download(blob) {
@@ -56,7 +70,7 @@ function download(blob) {
     let a = document.createElement('A');
     a.text = "Download";
     a.style = "color: #FFFFFF; background-color: #000000;";
-    a.download = "Playlist.json";
+    a.download = filename;
     a.href = url;
     a.click();
     window.setTimeout(function () {
