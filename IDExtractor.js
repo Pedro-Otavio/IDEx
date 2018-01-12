@@ -1,18 +1,21 @@
-var notMobile = (window.location.host != "m.youtube.com");
+var notMobile = true;
 var filename = "Playlist";
 var idFrom = d_idFrom;
 var titleFrom = d_titleFrom;
 var array = [];
 
-if (notMobile) {
-    array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-    filename = ytInitialData.sidebar.playlistSidebarRenderer.items[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
-    start();
-} else {
-    let container = document.querySelector('.etb .mz');
-    array = Array.from(container.querySelectorAll('.igb'));
-    filename = document.querySelector('.dab > .vjb > span').innerText;
-    start();
+function setup() {
+    notMobile = (window.location.host != "m.youtube.com");
+    if (notMobile) {
+        array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
+        filename = ytInitialData.sidebar.playlistSidebarRenderer.items[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
+        start();
+    } else {
+        let container = document.querySelector('.etb .mz');
+        array = Array.from(container.querySelectorAll('.igb'));
+        filename = document.querySelector('.dab > .vjb > span').innerText;
+        start();
+    }
 }
 
 function start() {
