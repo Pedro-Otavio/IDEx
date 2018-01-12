@@ -10,7 +10,8 @@ function setup() {
     notMobile = (window.location.host != "m.youtube.com");
     if (notMobile) {
         array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-        filename = ytInitialData.sidebar.playlistSidebarRenderer.items[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
+        let info = ytInitialData.sidebar.playlistSidebarRenderer.items;
+        filename = info[1].playlistSidebarSecondaryInfoRenderer.videoOwner.videoOwnerRenderer.title.runs[0].text + " - " + info[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
         start();
     } else {
         let container = document.querySelector('.etb .mz');
