@@ -19,7 +19,7 @@
     <script src="https://pedro-otavio.github.io/Resources/one.js" type="text/javascript"></script>
     <script>
         function bookmarkletURL(repository, filename) {
-            return "javascript:void((function(){let e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://pedro-otavio.github.io/" + repository + "/" + filename + "');setup();})())";
+            return "javascript:void((function(){let e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://pedro-otavio.github.io/" + repository + "/" + filename + "');document.body.appendChild(e);})())";
         }
     </script>
 </head>
