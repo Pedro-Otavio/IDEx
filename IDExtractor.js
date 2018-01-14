@@ -10,19 +10,21 @@ function setup() {
     notMobile = (window.location.host != "m.youtube.com");
     if (notMobile) {
         array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
-        let info = ytInitialData.sidebar.playlistSidebarRenderer.items;
+        let info = window.ytInitialData.sidebar.playlistSidebarRenderer.items;
         filename = info[1].playlistSidebarSecondaryInfoRenderer.videoOwner.videoOwnerRenderer.title.runs[0].text + " - " + info[0].playlistSidebarPrimaryInfoRenderer.title.runs[0].text;
         start();
     } else {
         let container = document.querySelector('.etb .mz');
         array = Array.from(container.querySelectorAll('.igb'));
         filename = document.querySelector('.dab > .vjb > span').innerText;
+        idFrom = m_idFrom;
+        titleFrom = m_titleFrom;
         start();
     }
 }
 
 function start() {
-    let dataArr = [];
+    let vidDataArr = [];
     let vidData = {
         id: '',
         title: ''
@@ -30,16 +32,16 @@ function start() {
     for (let i = 0, len = array.length; i < len; i++) {
         vidData.id = idFrom(array[i]);
         vidData.title = titleFrom(array[i]);
-        dataArr.push(vidData);
+        vidDataArr.push(vidData);
         vidData = {};
     }
-    let playerData = {
-        playlist: dataArr,
+    let PLData = {
+        playlist: vidDataArr,
         indexArray: [],
         index: 0,
         time: 0
     };
-    let data = JSON.stringify(playerData);
+    let data = JSON.stringify(PLData);
     let blob = new Blob([data], {
         type: "application/json"
     });
