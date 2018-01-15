@@ -24,7 +24,7 @@ function enable() {
 }
 
 fileReaderBase.onerror = function (event) {
-    console.error("\nFileReader error code " + event.target.error.code + "\n");
+    alert("\nFileReader error code " + event.target.error.code + "\n");
 };
 
 fileReaderDict.onerror = fileReaderBase.onerror;
