@@ -45,7 +45,7 @@ function start() {
     let blob = new Blob([data], {
         type: "application/json"
     });
-    filename += " (" + array.length + ")";
+    filename += " (" + array.length + ").json";
     download(blob);
 }
 
