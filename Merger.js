@@ -48,37 +48,28 @@ function merge() {
 
 
 function ready() {
-    if (base && dict) {
-        let dictIds = [];
-        for (let i = 0, len = fileDict.playlist.length; i < len; ++i) {
-            dictIds[i] = fileDict.playlist[i].id;
-        }
-        let renamed = [];
-        let vidData = {
-            id: '',
-            title: ''
-        };
-        for (let i = 0, len = fileBase.playlist.length; i < len; ++i) {
-            vidData.id = fileBase.playlist[i].id;
-            let dictIndex = dictIds.indexOf(vidData.id);
-            vidData.title = (dictIndex != -1) ? fileDict.playlist[dictIndex].title : fileBase.playlist[i].title;
-            renamed.push(vidData);
-            vidData = {};
-        }
-        let playerData = {
-            index: fileBase.index,
-            indexArray: fileBase.indexArray,
-            playlist: renamed
-        };
-        let data = JSON.stringify(playerData);
-        let blob = new Blob([data], {
-            type: 'application/json'
-        });
-        let url = window.URL.createObjectURL(blob);
-        $('#hiddenLink').attr('href', url).attr('download', 'RenamedPlaylist.json');
-        document.querySelector('#hiddenLink').click(); //jQuery bug
-        window.setTimeout(function () {
-            window.URL.revokeObjectURL(url);
-        }, 500);
+    if (!base || !dict)
+        return;
+    
+    let dictIds = [];
+    for (let i = 0, len = fileDict.playlist.length; i < len; ++i) {
+        dictIds[i] = fileDict.playlist[i].id;
     }
+
+    for (let i = 0, len = fileBase.playlist.length; i < len; ++i) {
+        let dictIndex = dictIds.indexOf(fileBase.playlist[i].id);
+        fileBase.playlist[i].title = (dictIndex != -1) ? fileDict.playlist[dictIndex].title : fileBase.playlist[i].title;
+    }
+    let data = JSON.stringify(fileBase);
+    let blob = new Blob([data], {
+        type: 'application/json'
+    });
+    
+    let url = window.URL.createObjectURL(blob);
+    $('#hiddenLink').attr('href', url).attr('download', 'RenamedPlaylist.json');
+    document.querySelector('#hiddenLink').click(); //jQuery bug
+    window.setTimeout(function () {
+        window.URL.revokeObjectURL(url);
+    }, 500);
+
 }
