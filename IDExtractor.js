@@ -54,7 +54,7 @@ function d_idFrom(e) {
 }
 
 function d_titleFrom(e) {
-    return e.playlistVideoRenderer.title.simpleText;
+    return e.playlistVideoRenderer.title.simpleText || "<Missing title>";
 }
 
 function m_idFrom(e) {
