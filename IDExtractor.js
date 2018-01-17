@@ -1,4 +1,4 @@
-var IDExtractor = IDExtractor || (function () {
+var IDExtractor = window["IDExtractor"] || (function () {
     let notMobile = true;
     let filename = "Playlist";
     let idFrom = d_idFrom;
