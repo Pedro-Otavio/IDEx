@@ -1,11 +1,11 @@
-var IDExtractor = window["IDExtractor"] || (function () {
+var IDExtractor = IDExtractor || (function () {
     let notMobile = true;
     let filename = "Playlist";
     let idFrom = d_idFrom;
     let titleFrom = d_titleFrom;
     let array = [];
 
-    this.setup = function run() {
+    this.run = function run() {
         notMobile = (window.location.host != "m.youtube.com");
         if (notMobile) {
             array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
