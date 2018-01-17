@@ -86,5 +86,5 @@ var IDExtractor = IDExtractor || (function () {
     }
 
     return this;
-})();
+}).call({});
 IDExtractor.run();
