@@ -53,7 +53,8 @@ var IDExtractor = IDExtractor || (function () {
     }
 
     function d_titleFrom(e) {
-        return e.playlistVideoRenderer.title.simpleText || "<Missing title>";
+        let title = e.playlistVideoRenderer.title.simpleText || "<Missing title>";
+        return title.search("-") != -1 ? title : e.playlistVideoRenderer.shortBylineText.runs[0].text + " - " + title;
     }
 
     function m_idFrom(e) {
