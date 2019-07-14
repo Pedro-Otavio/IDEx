@@ -55,7 +55,7 @@ var IDExtractor = IDExtractor || (function () {
 
     function d_titleFrom(e) {
         let title = e.playlistVideoRenderer.title.simpleText || "<Missing title>";
-        return title.search("-") != -1 ? title : e.playlistVideoRenderer.shortBylineText ? "<Missing \"By []\" text>" : e.playlistVideoRenderer.shortBylineText.runs[0].text || "<Missing \"By []\" text>" + " - " + title;
+        return title.search("-") != -1 ? title : (e.playlistVideoRenderer.shortBylineText ? e.playlistVideoRenderer.shortBylineText.runs[0].text || "<Missing \"By []\" text>" : "<Missing \"By []\" text>") + " - " + title;
     }
 
     function m_idFrom(e) {
