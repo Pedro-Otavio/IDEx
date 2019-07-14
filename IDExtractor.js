@@ -6,6 +6,7 @@ var IDExtractor = IDExtractor || (function () {
     let array = [];
 
     this.run = function run() {
+        document.querySelector("ytd-playlist-sidebar-renderer").appendChild(document.createElement('H1'));
         notMobile = (window.location.host != "m.youtube.com");
         if (notMobile) {
             array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
@@ -54,7 +55,7 @@ var IDExtractor = IDExtractor || (function () {
 
     function d_titleFrom(e) {
         let title = e.playlistVideoRenderer.title.simpleText || "<Missing title>";
-        return title.search("-") != -1 ? title : e.playlistVideoRenderer.shortBylineText.runs[0].text || "<Missing \"By []\" text>" + " - " + title;
+        return title.search("-") != -1 ? title : e.playlistVideoRenderer.shortBylineText ? "<Missing \"By []\" text>" : e.playlistVideoRenderer.shortBylineText.runs[0].text || "<Missing \"By []\" text>" + " - " + title;
     }
 
     function m_idFrom(e) {
@@ -74,16 +75,15 @@ var IDExtractor = IDExtractor || (function () {
     }
 
     function download(blob) {
+        document.querySelector("ytd-playlist-sidebar-renderer>h1:last-of-type>a").remove();
         let url = window.URL.createObjectURL(blob);
         let a = document.createElement('A');
         a.text = "Download";
         a.style = "color: #FFFFFF; background-color: #000000;";
         a.download = filename;
         a.href = url;
+        document.querySelector("ytd-playlist-sidebar-renderer>h1:last-of-type").appendChild(a);
         a.click();
-        window.setTimeout(function () {
-            window.URL.revokeObjectURL(url);
-        }, 500);
     }
 
     return this;
