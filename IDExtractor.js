@@ -6,7 +6,7 @@ var IDExtractor = IDExtractor || (function () {
     let array = [];
 
     this.run = function run() {
-        document.querySelector("ytd-playlist-sidebar-renderer").appendChild(document.createElement('H1'));
+        document.querySelector("ytd-playlist-sidebar-renderer").appendChild(document.createElement('H1')).appendChild(document.createElement('A'));
         notMobile = (window.location.host != "m.youtube.com");
         if (notMobile) {
             array = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents;
